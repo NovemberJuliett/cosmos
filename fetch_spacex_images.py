@@ -28,8 +28,6 @@ def get_latest_spacex_images():
             break
 
 
-# spacex_id = '5eb87ce4ffd86e000604b338'
-
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--spacex_id", help="ID запуска")

@@ -7,8 +7,7 @@ from save_images_helper import save_images
 load_dotenv()
 
 
-def fetch_epic_images():
-    epic_api_key = os.environ["APOD_KEY"]
+def fetch_epic_images(epic_api_key):
     epic_payload = {'api_key': epic_api_key}
     epic_response = requests.get("https://api.nasa.gov/EPIC/api/natural/images/", params=epic_payload)
     epic_info = epic_response.json()
@@ -28,7 +27,8 @@ def fetch_epic_images():
 
 
 def main():
-    fetch_epic_images()
+    epic_api_key = os.environ["APOD_KEY"]
+    fetch_epic_images(epic_api_key)
 
 
 if __name__ == '__main__':
