@@ -5,10 +5,8 @@ import os
 from urllib.parse import urlsplit
 
 
-Path("images").mkdir(parents=True, exist_ok=True)
-
-
 def save_images(url, path):
+    Path("images").mkdir(parents=True, exist_ok=True)
     response = requests.get(url)
     response.raise_for_status()
     with open(path, 'wb') as file:
