@@ -13,3 +13,5 @@ updates = bot.get_updates()
 print(updates[0])
 
 bot.send_message(text='Hello World!', chat_id="@nasaspacephotos")
+
+bot.send_document(chat_id="@nasaspacephotos", document=open('images/nasa_epic_0.png', 'rb'))
