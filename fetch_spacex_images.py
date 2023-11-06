@@ -32,7 +32,6 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--spacex_id", help="ID запуска")
     args = parser.parse_args()
-    print(args.spacex_id)
     if args.spacex_id is None:
         get_latest_spacex_images()
     else:
