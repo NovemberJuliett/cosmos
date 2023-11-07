@@ -1,5 +1,20 @@
-# NASA images downloader
+# Space Telegram
 
+This project helps to download photos from NASA resources and post them in your Telegram channel.
+
+## How to install
+
+Python3 should be already installed. 
+Then use `pip` (or `pip3`, if there is a conflict with Python2) to install dependencies:
+```
+pip install -r requirements.txt
+```
+
+## Project Goals
+
+The code is written for educational purposes on online-course for web-developers [dvmn.org](https://dvmn.org/)
+
+---
 ## save_images_helper
 The main script, which helps to download images
 
