@@ -37,7 +37,7 @@ def main():
     parser.add_argument("-delay_time", type=int, default=14400, help="Интервал отправки изображений")
     group = parser.add_mutually_exclusive_group(required=False)
     group.add_argument("--image_name", help="Название файла с расширением")
-    group.add_argument("--infinity_loop", action='store_true', help="Запуск бесконечного цикла отправки изображений")
+    group.add_argument("--infinite_loop", action='store_true', help="Запуск бесконечного цикла отправки изображений")
     args = parser.parse_args()
 
     if args.image_name is None and args.infinity_loop is False:
@@ -48,7 +48,7 @@ def main():
         send_one_image(args.image_name)
         return
 
-    if args.infinity_loop is not None:
+    if args.infinite_loop is not None:
         while True:
             send_images(args.delay_time)
             random.shuffle(nasa_images)
