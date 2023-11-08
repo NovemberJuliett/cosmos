@@ -13,9 +13,9 @@ bot = telegram.Bot(token=telegram_api_key)
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-delay_time", type=int, default=14400, help="Интервал отправки изображений")
-group = parser.add_mutually_exclusive_group(required=True)
+group = parser.add_mutually_exclusive_group(required=False)
 group.add_argument("--image_name", help="Название файла с расширением")
-group.add_argument("--infinity_loop", help="Запуск бесконечного цикла отправки изображений")
+group.add_argument("--infinity_loop", action='store_true', help="Запуск бесконечного цикла отправки изображений")
 args = parser.parse_args()
 print(args)
 
@@ -34,6 +34,9 @@ def send_images(delay):
 
 def send_random_image():
     random.shuffle(nasa_images)
+    for image in nasa_images:
+        file_path = os.path.join("images", image)
+    bot.send_document(chat_id=chat_id, document=open(file_path, "rb"))
 
 
 def send_one_image(image_name):
@@ -42,15 +45,12 @@ def send_one_image(image_name):
 
 
 if args.image_name is None and args.infinity_loop is None:
-    print('random')
     send_random_image()
 
 if args.image_name is not None:
-    print('image_name')
     send_one_image(args.image_name)
 
 if args.infinity_loop is not None:
-    print('loop')
     while True:
         send_images(args.delay_time)
         send_random_image()
