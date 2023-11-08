@@ -33,9 +33,9 @@ def send_images(delay):
 
 
 def send_random_image():
-    random.shuffle(nasa_images)
-    for image in nasa_images:
-        file_path = os.path.join("images", image)
+    random_image = random.choice(nasa_images)
+    print(random_image)
+    file_path = os.path.join("images", random_image)
     bot.send_document(chat_id=chat_id, document=open(file_path, "rb"))
 
 
@@ -44,16 +44,19 @@ def send_one_image(image_name):
     bot.send_document(chat_id=chat_id, document=open(file_path, "rb"))
 
 
-if args.image_name is None and args.infinity_loop is None:
+if args.image_name is None and args.infinity_loop is False:
+    print('random')
     send_random_image()
 
 if args.image_name is not None:
+    print('image_name')
     send_one_image(args.image_name)
 
 if args.infinity_loop is not None:
+    print('infinity')
     while True:
         send_images(args.delay_time)
-        send_random_image()
+        random.shuffle(nasa_images)
 
 
 
