@@ -80,7 +80,7 @@ You can use it to send pictures directly to your Telegram channel.
 
 ## post_images_to_channel
 
-This script send pictures to the Telegram channel.
+This script sends pictures to the Telegram channel.
 
 ## How to launch:
 
