@@ -44,9 +44,11 @@ API_KEY="your_api_key_here"
 ```
 Change the number of images you need in this fragment of code:
 
-![img.png](img.png)
-
+```python 
+apod_payload = {'api_key': api_key, 'count': 30}
+```
 Run the script:
+
 
 ```
 python path_to_file\fetch_apod_images.py
