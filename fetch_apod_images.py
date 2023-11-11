@@ -1,5 +1,4 @@
 import requests
-from dotenv import load_dotenv
 import os
 from urllib.parse import urlparse
 from save_images_helper import save_image
@@ -18,7 +17,6 @@ def fetch_apod_images(apod_key):
 
 
 def main():
-    load_dotenv()
     apod_api_key = os.environ["APOD_KEY"]
     fetch_apod_images(apod_api_key)
 

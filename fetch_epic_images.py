@@ -2,15 +2,16 @@ import requests
 import os
 from datetime import datetime
 from save_images_helper import save_image
+from dotenv import load_dotenv
 
 
 def fetch_epic_images(epic_api_key):
     epic_payload = {'api_key': epic_api_key}
     epic_response = requests.get("https://api.nasa.gov/EPIC/api/natural/images/", params=epic_payload)
-    epic_info = epic_response.json()
-    for index, element in enumerate(epic_info):
-        date_value = element['date']
-        image_name = element['image']
+    epic_images_data = epic_response.json()
+    for index, image in enumerate(epic_images_data):
+        date_value = image['date']
+        image_name = image['image']
         formatted_date = datetime.strptime(date_value, '%Y-%m-%d %H:%M:%S')
         date_without_time = datetime.date(formatted_date)
         year = date_without_time.year
@@ -24,6 +25,7 @@ def fetch_epic_images(epic_api_key):
 
 
 def main():
+    load_dotenv()
     epic_api_key = os.environ["APOD_KEY"]
     fetch_epic_images(epic_api_key)
 
