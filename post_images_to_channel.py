@@ -1,11 +1,8 @@
 import argparse
 import time
 import os
-from dotenv import load_dotenv
 import random
 from telegram_bot import send_file
-
-load_dotenv()
 
 
 nasa_images = []
@@ -40,7 +37,7 @@ def main():
     group.add_argument("--infinite_loop", action='store_true', help="Запуск бесконечного цикла отправки изображений")
     args = parser.parse_args()
 
-    if args.image_name is None and args.infinity_loop is False:
+    if args.image_name is None and args.infinite_loop is False:
         send_random_image()
         return
 

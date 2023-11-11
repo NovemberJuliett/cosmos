@@ -1,10 +1,7 @@
 import requests
-from dotenv import load_dotenv
 import os
 from datetime import datetime
 from save_images_helper import save_images
-
-load_dotenv()
 
 
 def fetch_epic_images(epic_api_key):

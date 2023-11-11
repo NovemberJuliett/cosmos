@@ -4,11 +4,9 @@ import os
 from urllib.parse import urlparse
 from save_images_helper import save_images
 
-load_dotenv()
 
-
-def fetch_apod_images(api_key):
-    apod_payload = {'api_key': api_key, 'count': 30}
+def fetch_apod_images(apod_key):
+    apod_payload = {'apod_key': apod_key, 'count': 30}
     apod_response = requests.get("https://api.nasa.gov/planetary/apod", params=apod_payload)
     apod_response.raise_for_status()
     apod_pics = apod_response.json()
@@ -20,6 +18,7 @@ def fetch_apod_images(api_key):
 
 
 def main():
+    load_dotenv()
     apod_api_key = os.environ["APOD_KEY"]
     fetch_apod_images(apod_api_key)
 

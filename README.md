@@ -10,6 +10,28 @@ Then use `pip` (or `pip3`, if there is a conflict with Python2) to install depen
 pip install -r requirements.txt
 ```
 
+## Environment variables
+
+Before launching the script, create an .env file in your project directory (or in the root of your project).
+
+At first, Get your APOD key [here](https://api.nasa.gov/#apod). Put your APOD key into the .env file and assign its value to the new environment variable. For example:
+
+```python 
+APOD_KEY="your_APOD_key_here"
+```
+Then create new Telegram bot with the help of @BotFather (you can find it in Telegram) and get your API token from it.
+Create new variable in the same .env file and put your token here. For example:
+
+```python 
+TOKEN ="your_telegram_token_here"
+```
+At last create new Telegram channel and make your bot the admin in it. Invent a name for your channel and put it 
+in a new variable in the same .env file. For example:
+
+```python 
+CHAT_ID = "@my_photo_channel"
+```
+
 ---
 ## save_images_helper
 
@@ -35,20 +57,12 @@ This script helps to download NASA picture of the day. You can add the quantity 
 
 ### How to launch:
 
-Get your API key [here](https://api.nasa.gov/#apod).
-Create an .env file in your project directory (or in the root of your project).
-Put your API key into the .env file and assign its value to the new environment variable. For example:
-
-```python 
-API_KEY="your_api_key_here"
-```
 Change the number of images you need in this fragment of code:
 
 ```python 
-apod_payload = {'api_key': api_key, 'count': 30}
+apod_payload = {'apod_key': apod_key, 'count': 30}
 ```
 Run the script:
-
 
 ```
 python path_to_file\fetch_apod_images.py
@@ -59,14 +73,6 @@ python path_to_file\fetch_apod_images.py
 This script helps to download Earth photos depending on the date.
 
 ## How to launch:
-
-Get your API key [here](https://api.nasa.gov/#apod).
-Create an .env file in your project directory (or in the root of your project).
-Put your API key into the .env file and assign its value to the new environment variable. For example:
-
-```python 
-API_KEY="your_api_key_here"
-```
 
 Run the script:
 
@@ -83,9 +89,6 @@ You can use it to send pictures directly to your Telegram channel.
 This script sends pictures to the Telegram channel.
 
 ## How to launch:
-
-At first create your bot with the help of @BotFather (you can find it in Telegram).
-Then create a new channel and make your bot the admin in it.  
 
 If you run the script without any arguments, it will send a random picture to your channel.
 
