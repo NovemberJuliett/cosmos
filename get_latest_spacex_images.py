@@ -1,6 +1,6 @@
 import requests
 import os
-from save_images_helper import save_image
+from save_image_helper import save_image
 
 
 def get_latest_spacex_images():

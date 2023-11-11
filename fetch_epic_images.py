@@ -1,7 +1,7 @@
 import requests
 import os
 from datetime import datetime
-from save_images_helper import save_image
+from save_image_helper import save_image
 from dotenv import load_dotenv
 
 

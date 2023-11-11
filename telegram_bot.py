@@ -3,7 +3,7 @@ import os
 from dotenv import load_dotenv
 
 
-def send_file(file_path):
+def send_file(file_path, api_key, token):
     load_dotenv()
     telegram_api_key = os.environ["TOKEN"]
     chat_id = os.environ['CHAT_ID']
