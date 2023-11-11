@@ -60,7 +60,7 @@ This script helps to download NASA picture of the day. You can add the quantity 
 Change the number of images you need in this fragment of code:
 
 ```python 
-apod_payload = {'apod_key': apod_key, 'count': 30}
+apod_payload = {'apod_key': apod_key, 'count': number_of_images}
 ```
 Run the script:
 

@@ -1,7 +1,7 @@
 import requests
 import os
 from datetime import datetime
-from save_images_helper import save_images
+from save_images_helper import save_image
 
 
 def fetch_epic_images(epic_api_key):
@@ -20,7 +20,7 @@ def fetch_epic_images(epic_api_key):
             "https://api.nasa.gov/EPIC/archive/natural/"f'{year}/{month}/{day}/png/'""f'{image_name}.png',
             params=epic_payload)
         epic_pic_link = new_epic_response.url
-        save_images(epic_pic_link, f'images/nasa_epic_{index}'".png")
+        save_image(epic_pic_link, f'images/nasa_epic_{index}'".png")
 
 
 def main():
