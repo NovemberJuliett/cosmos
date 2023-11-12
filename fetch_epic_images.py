@@ -3,6 +3,7 @@ import os
 from datetime import datetime
 from save_image_helper import save_image
 from dotenv import load_dotenv
+from urllib.parse import urlparse, urlunparse, urlencode
 
 
 def fetch_epic_images(epic_api_key):
@@ -17,8 +18,11 @@ def fetch_epic_images(epic_api_key):
         year = date_without_time.year
         month = f"{date_without_time:%m}"
         day = f"{date_without_time:%d}"
-        new_epic_link = "https://api.nasa.gov/EPIC/archive/natural/"f'{year}/{month}/{day}/png/' \
-                        f'{image_name}.png?api_key={epic_api_key}'
+        new_url = "https://api.nasa.gov/EPIC/archive/natural/"f'{year}/{month}/{day}/png/{image_name}.png'
+        url_parts = list(urlparse(new_url))
+        url_query = urlencode(epic_payload)
+        url_parts[4] = url_query
+        new_epic_link = urlunparse(url_parts)
         save_image(new_epic_link, f'images/nasa_epic_{index}'".png")
 
 
