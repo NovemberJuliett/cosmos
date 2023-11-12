@@ -2,28 +2,22 @@ import argparse
 import time
 import os
 import random
+from dotenv import load_dotenv
 from telegram_bot import send_file
 
 
-def send_images(delay, images_list):
+def send_images(delay, images_list, token, chat_id):
     for image in images_list:
         file_path = os.path.join("images", image)
-        send_file(file_path)
+        send_file(file_path, token, chat_id)
         time.sleep(delay)
 
 
-def send_random_image(images_list):
-    random_image = random.choice(images_list)
-    file_path = os.path.join("images", random_image)
-    send_file(file_path)
-
-
-def send_one_image(image_name):
-    file_path = os.path.join("images", image_name)
-    send_file(file_path)
-
-
 def main():
+    load_dotenv()
+    token = os.environ["TELEGRAM_TOKEN"]
+    chat_id = os.environ["TG_CHAT_ID"]
+
     nasa_images = []
     for file in os.walk("images"):
         for element in file[2]:
@@ -37,16 +31,19 @@ def main():
     args = parser.parse_args()
 
     if args.image_name is None and not args.infinite_loop:
-        send_random_image(nasa_images)
+        random_image = random.choice(nasa_images)
+        file_path = os.path.join("images", random_image)
+        send_file(file_path, token, chat_id)
         return
 
     if args.image_name:
-        send_one_image(args.image_name)
+        file_path = os.path.join("images", args.image_name)
+        send_file(file_path, token, chat_id)
         return
 
     if args.infinite_loop:
         while True:
-            send_images(args.delay_time, nasa_images)
+            send_images(args.delay_time, nasa_images, token, chat_id)
             random.shuffle(nasa_images)
             return
 

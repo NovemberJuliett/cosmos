@@ -23,13 +23,13 @@ Then create new Telegram bot with the help of @BotFather (you can find it in Tel
 Create new variable in the same .env file and put your token here. For example:
 
 ```python 
-TOKEN ="your_telegram_token_here"
+TELEGRAM_TOKEN ="your_telegram_token_here"
 ```
 At last create new Telegram channel and make your bot the admin in it. Invent a name for your channel and put it 
 in a new variable in the same .env file. For example:
 
 ```python 
-CHAT_ID = "@my_photo_channel"
+TG_CHAT_ID = "@my_photo_channel"
 ```
 
 ---
