@@ -18,12 +18,8 @@ def fetch_epic_images(epic_api_key):
         year = date_without_time.year
         month = f"{date_without_time:%m}"
         day = f"{date_without_time:%d}"
-        new_url = "https://api.nasa.gov/EPIC/archive/natural/"f'{year}/{month}/{day}/png/{image_name}.png'
-        url_parts = list(urlparse(new_url))
-        url_query = urlencode(epic_payload)
-        url_parts[4] = url_query
-        new_epic_link = urlunparse(url_parts)
-        save_image(new_epic_link, f'images/nasa_epic_{index}'".png")
+        new_url = f"https://api.nasa.gov/EPIC/archive/natural/{year}/{month}/{day}/png/{image_name}.png"
+        save_image(new_url, f'images/nasa_epic_{index}.png', query_params=epic_payload)
 
 
 def main():
