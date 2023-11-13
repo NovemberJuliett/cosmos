@@ -18,7 +18,7 @@ def fetch_spacex_images(flight_id):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Введите ID запуска: ")
+    parser = argparse.ArgumentParser(description="Скачивает изображения с запусков SpaceX")
     parser.add_argument("--spacex_id", help="ID запуска")
     args = parser.parse_args()
     if args.spacex_id is None:

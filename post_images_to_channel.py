@@ -23,7 +23,7 @@ def main():
         for element in file[2]:
             nasa_images.append(element)
 
-    parser = argparse.ArgumentParser(description="Введите выбранные аргументы:")
+    parser = argparse.ArgumentParser(description="Отправляет изображения в телеграм-канал")
     parser.add_argument("-delay_time", type=int, default=14400, help="Интервал отправки изображений")
     group = parser.add_mutually_exclusive_group(required=False)
     group.add_argument("--image_name", help="Название файла с расширением")

@@ -9,8 +9,8 @@ from urllib.parse import urlparse, urlunparse, urlencode
 def fetch_epic_images(epic_api_key):
     epic_payload = {'api_key': epic_api_key}
     epic_response = requests.get("https://api.nasa.gov/EPIC/api/natural/images/", params=epic_payload)
-    epic_images_data = epic_response.json()
-    for index, image in enumerate(epic_images_data):
+    image_features = epic_response.json()
+    for index, image in enumerate(image_features):
         date_value = image['date']
         image_name = image['image']
         formatted_date = datetime.strptime(date_value, '%Y-%m-%d %H:%M:%S')
