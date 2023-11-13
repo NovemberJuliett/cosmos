@@ -72,23 +72,19 @@ python path_to_file\fetch_apod_images.py
 
 This script helps to download Earth photos depending on the date.
 
-## How to launch:
+### How to launch:
 
 Run the script:
 
 ```
 python path_to_file\fetch_epic_images.py
 ```
-## telegram_bot
-
-This script stores the data for creating your Telegram bot.
-You can use it to send pictures directly to your Telegram channel.
 
 ## post_images_to_channel
 
 This script sends pictures to the Telegram channel.
 
-## How to launch:
+### How to launch:
 
 If you run the script without any arguments, it will send a random picture to your channel.
 
