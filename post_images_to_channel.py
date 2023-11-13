@@ -6,11 +6,10 @@ from dotenv import load_dotenv
 from telegram_bot import send_file
 
 
-def send_images(delay, images_list, token, chat_id):
-    for image in images_list:
-        file_path = os.path.join("images", image)
-        send_file(file_path, token, chat_id)
-        time.sleep(delay)
+def send_images(delay, image, token, chat_id):
+    file_path = os.path.join("images", image)
+    send_file(file_path, token, chat_id)
+    time.sleep(delay)
 
 
 def main():
@@ -23,7 +22,7 @@ def main():
         for element in file[2]:
             nasa_images.append(element)
 
-    parser = argparse.ArgumentParser(description="Отправляет изображения в телеграм-канал")
+    parser = argparse.ArgumentParser(description="Отправляет изображения в Телеграм-канал")
     parser.add_argument("-delay_time", type=int, default=14400, help="Интервал отправки изображений")
     group = parser.add_mutually_exclusive_group(required=False)
     group.add_argument("--image_name", help="Название файла с расширением")
@@ -43,9 +42,10 @@ def main():
 
     if args.infinite_loop:
         while True:
-            send_images(args.delay_time, nasa_images, token, chat_id)
+            for image in nasa_images:
+                send_images(args.delay_time, image, token, chat_id)
+
             random.shuffle(nasa_images)
-            return
 
 
 if __name__ == '__main__':
