@@ -7,10 +7,14 @@ from get_latest_spacex_images import get_latest_spacex_images
 
 
 def fetch_spacex_images(flight_id):
-    spacex_response = requests.get(f"https://api.spacexdata.com/v5/launches/{flight_id}")
+    url = f"https://api.spacexdata.com/v5/launches/{flight_id}"
+    if not flight_id:
+        url = "https://api.spacexdata.com/v5/launches/latest/"
+
+    spacex_response = requests.get(url)
     spacex_response.raise_for_status()
-    flight_info = spacex_response.json()
-    photo_links = flight_info["links"]["flickr"]["original"]
+    flight = spacex_response.json()
+    photo_links = flight["links"]["flickr"]["original"]
     for index, link in enumerate(photo_links):
         urlparse(link)
         link_name, link_extension = os.path.splitext(link)
@@ -21,10 +25,7 @@ def main():
     parser = argparse.ArgumentParser(description="Скачивает изображения с запусков SpaceX")
     parser.add_argument("--spacex_id", help="ID запуска")
     args = parser.parse_args()
-    if args.spacex_id is None:
-        get_latest_spacex_images()
-    else:
-        fetch_spacex_images(args.spacex_id)
+    fetch_spacex_images(args.spacex_id)
 
 
 if __name__ == '__main__':
