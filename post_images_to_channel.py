@@ -30,7 +30,7 @@ def main():
     group.add_argument("--infinite_loop", action='store_true', help="Запуск бесконечного цикла отправки изображений")
     args = parser.parse_args()
 
-    if args.image_name is None and not args.infinite_loop:
+    if not args.image_name and not args.infinite_loop:
         random_image = random.choice(nasa_images)
         file_path = os.path.join("images", random_image)
         send_file(file_path, token, chat_id)

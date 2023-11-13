@@ -3,7 +3,6 @@ import argparse
 from urllib.parse import urlparse
 import os
 from save_image_helper import save_image
-from get_latest_spacex_images import get_latest_spacex_images
 
 
 def fetch_spacex_images(flight_id):
@@ -16,7 +15,6 @@ def fetch_spacex_images(flight_id):
     flight = spacex_response.json()
     photo_links = flight["links"]["flickr"]["original"]
     for index, link in enumerate(photo_links):
-        urlparse(link)
         link_name, link_extension = os.path.splitext(link)
         save_image(link, f'images/spacex_{index}{link_extension}')
 
