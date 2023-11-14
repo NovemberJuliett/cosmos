@@ -6,12 +6,6 @@ from dotenv import load_dotenv
 import telegram
 
 
-def send_images(delay, image, token, chat_id):
-    file_path = os.path.join("images", image)
-    send_file(file_path, token, chat_id)
-    time.sleep(delay)
-
-
 def send_file(file_path, token, chat_id):
     bot = telegram.Bot(token=token)
     with open(file_path, "rb") as file:
@@ -49,7 +43,9 @@ def main():
     if args.infinite_loop:
         while True:
             for image in nasa_images:
-                send_images(args.delay_time, image, token, chat_id)
+                file_path = os.path.join("images", image)
+                send_file(file_path, token, chat_id)
+                time.sleep(args.delay_time)
 
             random.shuffle(nasa_images)
 
