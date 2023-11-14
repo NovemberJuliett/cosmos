@@ -7,9 +7,6 @@ from save_image_helper import save_image
 
 def fetch_spacex_images(flight_id):
     url = f"https://api.spacexdata.com/v5/launches/{flight_id}"
-    if not flight_id:
-        url = "https://api.spacexdata.com/v5/launches/latest/"
-
     spacex_response = requests.get(url)
     spacex_response.raise_for_status()
     flight = spacex_response.json()
@@ -21,7 +18,7 @@ def fetch_spacex_images(flight_id):
 
 def main():
     parser = argparse.ArgumentParser(description="Скачивает изображения с запусков SpaceX")
-    parser.add_argument("--spacex_id", help="ID запуска")
+    parser.add_argument("--spacex_id", default="latest", help="ID запуска")
     args = parser.parse_args()
     fetch_spacex_images(args.spacex_id)
 
